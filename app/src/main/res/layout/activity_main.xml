@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- ================= SECCIÓN ENTRADA DE DATOS ================= -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +49,6 @@
             android:inputType="number"
             android:layout_marginBottom="16dp"/>
 
-        <!-- Botón de acción principal -->
         <Button
             android:id="@+id/btnCalcularGrabar"
             android:layout_width="match_parent"
@@ -66,7 +64,6 @@
             android:background="#CCCCCC"
             android:layout_marginBottom="24dp"/>
 
-        <!-- ================= SECCIÓN RESULTADOS DESDE BD ================= -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

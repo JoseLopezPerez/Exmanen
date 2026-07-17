@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Inicializamos la conexión a Realtime Database en el nodo "nominas"
         try {
             dbRef = FirebaseDatabase.getInstance().getReference("nominas");
         } catch (Exception e) {
@@ -35,17 +34,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error de conexión con Firebase", Toast.LENGTH_LONG).show();
         }
 
-        // Programamos el evento del botón Calcular y Grabar
         binding.btnCalcularGrabar.setOnClickListener(v -> {
             calcularYGrabarNomina();
         });
 
-        // Escuchador en tiempo real: Cada vez que se guarde algo en la BD, se actualizará la pantalla
         escucharUltimoRegistroBD();
     }
 
     private void calcularYGrabarNomina() {
-        // 1. Capturar y validar que los campos no estén vacíos
         String empleado = binding.inputEmpleado.getText().toString().trim();
         String sueldoHoraStr = binding.inputSueldoHora.getText().toString().trim();
         String horasDiariasStr = binding.inputHorasDiarias.getText().toString().trim();
@@ -57,26 +53,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            // 2. Convertir textos a números para operar
             double sueldoHora = Double.parseDouble(sueldoHoraStr);
             int horasDiarias = Integer.parseInt(horasDiariasStr);
             int totalDias = Integer.parseInt(totalDiasStr);
 
-            // 3. FÓRMULAS MATEMÁTICAS (Sueldo Total y descuento IESS de 9.45%)
             double sueldoTotal = sueldoHora * horasDiarias * totalDias;
             double descuentoIess = sueldoTotal * 0.0945;
             double sueldoNeto = sueldoTotal - descuentoIess;
 
-            // 4. GUARDAR EN FIREBASE REALTIME DATABASE
             if (dbRef != null) {
-                // Creamos el mapa de datos
                 Map<String, Object> nomina = new HashMap<>();
                 nomina.put("empleado", empleado);
                 nomina.put("sueldo_total", sueldoTotal);
                 nomina.put("sueldo_neto", sueldoNeto);
                 nomina.put("timestamp", System.currentTimeMillis());
 
-                // Guardamos con un ID único push()
                 dbRef.push().setValue(nomina)
                         .addOnSuccessListener(aVoid -> {
                             Toast.makeText(MainActivity.this, "¡Sueldo Neto grabado con éxito!", Toast.LENGTH_SHORT).show();
@@ -97,11 +88,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Método para ESCUCHAR los datos guardados desde la Base de Datos y presentarlos
     private void escucharUltimoRegistroBD() {
         if (dbRef == null) return;
 
-        // Consultamos el último registro agregado basándonos en el tiempo
         dbRef.orderByChild("timestamp").limitToLast(1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
