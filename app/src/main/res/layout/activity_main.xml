@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ================= SECCIÓN ENTRADA DE DATOS ================= -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Datos del Empleado"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/inputEmpleado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Empleado"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/inputSueldoHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sueldo por Hora ($)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/inputHorasDiarias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Horas Diarias"
+            android:inputType="number"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/inputTotalDias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Total de Días"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Botón de acción principal -->
+        <Button
+            android:id="@+id/btnCalcularGrabar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calcular y Grabar Sueldo Neto $"
+            android:backgroundTint="#0091EA"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#CCCCCC"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- ================= SECCIÓN RESULTADOS DESDE BD ================= -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presentar Resultados desde la BD"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/txtResultadoSueldoTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sueldo total: --"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtResultadoSueldoNeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sueldo Neto $: --"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="*(Ya descontado el 9.45% del IESS)"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
